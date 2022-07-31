@@ -11,5 +11,5 @@ def home(request):
 
 class SignUp(CreateView):
     form_class = forms.SignUpForm
-    success_url = reverse_lazy('rest_framework:login')
+    success_url = reverse_lazy('login')
     template_name = "registration/signup.html"
