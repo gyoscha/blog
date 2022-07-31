@@ -1,7 +1,7 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from note.models import Note
+from note.models import Note, User
 from . import serializers
 
 
@@ -23,3 +23,15 @@ class NoteDetailAPIView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(author__in=[self.request.user])
+
+
+class UsersAPIView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = serializers.UsersSerializer
+
+
+class UsersDetailAPIView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = serializers.UsersSerializer

@@ -8,7 +8,7 @@ from note import models
 class NoteSerializer(serializers.ModelSerializer):
     """ Сериализация данных для постов """
     author = serializers.SlugRelatedField(
-        slug_field="username",
+        slug_field='username',
         read_only=True
     )
 
@@ -29,3 +29,13 @@ class NoteSerializer(serializers.ModelSerializer):
         ret['create_at'] = create_at.strftime('%d %B %Y - %H:%M:%S')
         ret['update_at'] = update_at.strftime('%d %B %Y - %H:%M:%S')
         return ret
+
+
+class UsersSerializer(serializers.ModelSerializer):
+    """ Сериализация данных для списка пользователей """
+
+    class Meta:
+        model = models.User
+        fields = (
+            'id', 'username', 'first_name', 'last_name', 'email',
+        )
