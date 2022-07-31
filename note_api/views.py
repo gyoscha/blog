@@ -1,5 +1,5 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from note.models import Note, User
 from . import serializers, permissions

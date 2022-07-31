@@ -2,7 +2,7 @@ from datetime import datetime
 
 from rest_framework import serializers
 
-from note import models
+from note.models import User, Note
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class NoteSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = models.Note
+        model = Note
         fields = (
             'id', 'title', 'note', 'create_at', 'update_at',
             'author',
@@ -35,7 +35,7 @@ class UsersSerializer(serializers.ModelSerializer):
     """ Сериализация данных для списка пользователей """
 
     class Meta:
-        model = models.User
+        model = User
         fields = (
             'id', 'username', 'first_name', 'last_name', 'email',
         )
