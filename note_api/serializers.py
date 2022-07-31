@@ -33,15 +33,23 @@ class NoteSerializer(serializers.ModelSerializer):
 
 class UsersSerializer(serializers.ModelSerializer):
     """ Сериализация данных для списка пользователей """
-    # posts = serializers.SlugRelatedField(
-    #     slug_field='',
-    #     many=True,
-    # )
 
     class Meta:
         model = User
         fields = (
             'id', 'username', 'first_name', 'last_name', 'email',
+        )
+
+
+class UsersDetailSerializer(serializers.ModelSerializer):
+    """ Сериализация данных для списка пользователей """
+    posts = NoteSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'id', 'username', 'first_name', 'last_name', 'email',
+            'posts',
         )
 
 
