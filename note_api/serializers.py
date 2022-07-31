@@ -15,7 +15,7 @@ class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Note
         fields = (
-            'id', 'title', 'note', 'create_at',
+            'id', 'title', 'note', 'create_at', 'update_at',
             'author',
         )
 
@@ -24,6 +24,8 @@ class NoteSerializer(serializers.ModelSerializer):
         ret = super().to_representation(instance)
         # Конвертируем строку в дату по формату
         create_at = datetime.strptime(ret['create_at'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        update_at = datetime.strptime(ret['update_at'], '%Y-%m-%dT%H:%M:%S.%fZ')
         # Конвертируем дату в строку в новом формате
         ret['create_at'] = create_at.strftime('%d %B %Y - %H:%M:%S')
+        ret['update_at'] = update_at.strftime('%d %B %Y - %H:%M:%S')
         return ret
